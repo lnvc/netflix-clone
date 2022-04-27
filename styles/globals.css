@@ -24,4 +24,9 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
+  cursor: pointer;
+}
+
+h1 {
+  color: white;
 }
