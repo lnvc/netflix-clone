@@ -1,8 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link';
 
-export default function Home() {
+import styles from '../styles/Home.module.css'
+import { getSortedPostsData } from '../lib/posts'
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+}
+
+export default function Home({ allPostsData }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +25,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Learn <Link href="/posts/first-post"><a>Next.js!</a></Link>
         </h1>
 
         <p className={styles.description}>
@@ -50,6 +62,20 @@ export default function Home() {
             </p>
           </a>
         </div>
+        <section>
+          <h2>Blog</h2>
+          <ul>
+            {allPostsData?.map(({ id, date, title }) => (
+              <li key={id}>
+                {title}
+                <br />
+                {id}
+                <br />
+                {date}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
 
       <footer className={styles.footer}>
@@ -60,7 +86,7 @@ export default function Home() {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <Image src="/images/loona.png" alt="Vercel Logo" width={144} height={144} />
           </span>
         </a>
       </footer>
