@@ -9,7 +9,7 @@ interface IArrow {
 const Arrow = ({ direction }: IArrow) => {
   return (
     <>
-      <h1>{direction === 'right' ? '>' : '<' }</h1>
+      <h1 className={styles.arrow}>{direction === 'right' ? '>' : '<' }</h1>
     </>
   );
 };
