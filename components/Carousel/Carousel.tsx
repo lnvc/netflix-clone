@@ -46,10 +46,10 @@ const Carousel = ({ movies, title }) => {
       <h1>{title} {'>'}</h1>
       <div className={styles.container}>
         {
-          page &&
+          page ?
           <div onClick={handlePreviousPage}>
             <Arrow direction='left' />
-          </div>
+          </div> : null
         }
         {sixMovies?.map(movie => (
           <Card movie={movie} key={movie.id} />
